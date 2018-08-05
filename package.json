@@ -4,6 +4,7 @@
   "description": "recipe app in JS",
   "main": "webpack.config.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
