@@ -1,0 +1,26 @@
+{
+  "name": "recipe-website-javascript",
+  "version": "1.0.0",
+  "description": "recipe app in JS",
+  "main": "webpack.config.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0"
+  },
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keener101/Recipe-Website-Javascript.git"
+  },
+  "author": "Adam Keener",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keener101/Recipe-Website-Javascript/issues"
+  },
+  "homepage": "https://github.com/keener101/Recipe-Website-Javascript#readme"
+}
