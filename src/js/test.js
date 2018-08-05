@@ -1,2 +1,2 @@
 console.log('Importing module');
-export default 'ring';
+export default 19;
