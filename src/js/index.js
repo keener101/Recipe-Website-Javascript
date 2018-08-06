@@ -5,6 +5,7 @@ import { elements, displayLoader, clearLoader } from './view/base';
 import * as searchView from './view/searchView';
 import * as recipeView from './view/recipeView';
 import * as listView from './view/listView';
+import Likes from './models/Likes';
 
 
 /*Global State of app
@@ -150,6 +151,34 @@ elements.shopping.addEventListener('click', e => {
 })
 
 
+////Like Controller
+
+const controlLike = () => {
+    if (!state.likes) state.likes = new Likes();
+    const currentID = state.recipe.id;
+
+    if (!state.likes.isLiked(currentID)) {
+        //add like to state
+        const newLike = state.likes.addLike(
+            currentID,
+            state.recipe.title,
+            state.recipe.author,
+            state.recipe.img
+        );
+        //toggle like button
+
+        //add like to UI
+    } else {
+        //remove like from state
+        state.likes.deleteLike(currentID);
+        //toggle like button
+
+        //remove like from UI
+
+    }
+}
+
+
 
 
 
@@ -168,7 +197,11 @@ elements.recipe.addEventListener('click', e => {
         recipeView.updateServingsDisplay(state.recipe);
     } else if (e.target.matches('.recipe__btn--add, .recipe__btn--add *')){
         controlList();
-    } 
+    } else if (e.target.matches('.recipe__love, .recipe__love *')){
+        //Like controller
+
+        controlLike();
+    }
 });
 
 window.l = new List();
