@@ -1,5 +1,6 @@
 import Search from './models/Search';
 import Recipe from './models/Recipe';
+import List from './models/List';
 import { elements, displayLoader, clearLoader } from './view/base';
 import * as searchView from './view/searchView';
 import * as recipeView from './view/recipeView';
@@ -130,4 +131,6 @@ elements.recipe.addEventListener('click', e => {
         recipeView.updateServingsDisplay(state.recipe);
     }
 
-})
+});
+
+window.l = new List();
