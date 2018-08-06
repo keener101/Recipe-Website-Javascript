@@ -1,4 +1,5 @@
 import Search from './models/Search';
+import Recipe from './models/Recipe';
 import { elements, displayLoader, clearLoader } from './view/base';
 import * as searchView from './view/searchView';
 
@@ -10,7 +11,10 @@ import * as searchView from './view/searchView';
 
 */
 
+
 const state = {};
+
+//search controller
 
 const controlSearch = async () => {
     //1 Get Query from view
@@ -19,18 +23,23 @@ const controlSearch = async () => {
     if(query){
         //2 new search obj, add to state
         state.search = new Search(query);
-        
-        //3 prepare UI for results
-        searchView.clearInput();
-        searchView.clearResults();
-        displayLoader(elements.searchRes);
+        try{
+            //3 prepare UI for results
+            searchView.clearInput();
+            searchView.clearResults();
+            displayLoader(elements.searchRes);
 
-        //4 search for recipes 
-        await state.search.getResults();
+            //4 search for recipes 
+            await state.search.getResults();
 
-        //5 display results on UI
-        clearLoader();
-        searchView.displayResults(state.search.result);
+            //5 display results on UI
+            clearLoader();
+            searchView.displayResults(state.search.result);
+
+        }catch(error){
+            console.log(error);
+            clearLoader();
+        }
     }
 } 
 
@@ -49,4 +58,45 @@ elements.searchResPages.addEventListener('click', e => {
 
     
    
-})
+});
+
+//recipe controller
+
+const controlRecipe = async () => {
+    //get id from url
+    
+    const id = window.location.hash.replace('#', '');
+    console.log(id);
+
+
+    
+    if (id) {
+        //prepare UI for changes
+
+        //create recipe obj
+        state.recipe = new Recipe(id);
+
+        try{
+
+             //get recipe data
+            await state.recipe.getRecipe();
+
+            //calc servings and time
+            state.recipe.calcTime();
+            state.recipe.calcServings();
+
+            //display recipe in UI
+            console.log(state.recipe);
+
+        }catch (error){
+            console.log(error);
+            alert("Something went wrong with processing the recipe");
+        }
+
+       
+
+    };
+
+}
+
+window.addEventListener('hashchange', controlRecipe);
