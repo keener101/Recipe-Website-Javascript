@@ -1,6 +1,7 @@
 import { elements } from './base';
 
 export const displayItem = item => {
+    
     const markup =`
                 <li class="shopping__item" data-itemid=${item.id}>
                     <div class="shopping__count">
@@ -20,6 +21,6 @@ export const displayItem = item => {
 };
 
 export const deleteItem = id => {
-    const item = document.querySelector(`[date-itemid="${id}"]`);
+    const item = document.querySelector(`[data-itemid="${id}"]`);
     item.parentElement.removeChild(item);
 };

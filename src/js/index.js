@@ -17,6 +17,7 @@ import * as listView from './view/listView';
 
 
 const state = {};
+window.state = state;
 
 //search controller
 
@@ -134,6 +135,20 @@ const controlList = () => {
 
 }
 
+elements.shopping.addEventListener('click', e => {
+    const id = e.target.closest('.shopping__item').dataset.itemid;
+
+    if (e.target.matches('.shopping__delete, .shopping__delete *')){
+        state.list.deleteItem(id);
+
+        listView.deleteItem(id);
+    } else if (e.target.matches('.shopping__count-value')) {
+        console.log('hello?');
+        const val = parseFloat(e.target.value);
+        state.list.updateCount(id, val);
+    }
+})
+
 
 
 
@@ -153,8 +168,7 @@ elements.recipe.addEventListener('click', e => {
         recipeView.updateServingsDisplay(state.recipe);
     } else if (e.target.matches('.recipe__btn--add, .recipe__btn--add *')){
         controlList();
-    }
-
+    } 
 });
 
 window.l = new List();

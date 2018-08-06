@@ -1,6 +1,7 @@
 import { elements } from './base';
 import { Fraction } from 'fractional';
 
+
 const formatCount = count => {
     if (count){
         const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10));
