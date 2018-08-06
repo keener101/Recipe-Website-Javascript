@@ -4,6 +4,8 @@ import List from './models/List';
 import { elements, displayLoader, clearLoader } from './view/base';
 import * as searchView from './view/searchView';
 import * as recipeView from './view/recipeView';
+import * as listView from './view/listView';
+
 
 /*Global State of app
     -Search Object
@@ -118,6 +120,26 @@ const controlRecipe = async () => {
 
 window.addEventListener('hashchange', controlRecipe);
 
+
+//List controller
+
+const controlList = () => {
+
+    if (!state.list) state.list = new List();
+
+    state.recipe.ingredients.forEach(el => {
+        const item = state.list.addItem(el.count, el.unit, el.ingredient);
+        listView.displayItem(item);
+    })
+
+}
+
+
+
+
+
+
+//event listener on button clicks
 elements.recipe.addEventListener('click', e => {
 
 
@@ -129,6 +151,8 @@ elements.recipe.addEventListener('click', e => {
     } else if (e.target.matches('.btn-increase, .btn-increase *')){
         state.recipe.updateServings('inc');
         recipeView.updateServingsDisplay(state.recipe);
+    } else if (e.target.matches('.recipe__btn--add, .recipe__btn--add *')){
+        controlList();
     }
 
 });
