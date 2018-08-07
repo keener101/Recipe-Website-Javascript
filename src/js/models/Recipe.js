@@ -102,7 +102,6 @@ export default class Recipe {
 
     updateServings (type){
 
-        console.log("DING");
 
         const newServings = type === 'dec' ? this.servings -1 : this.servings +1;
 

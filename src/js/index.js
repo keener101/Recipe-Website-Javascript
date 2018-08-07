@@ -20,10 +20,6 @@ import Likes from './models/Likes';
 
 const state = {};
 
-//TESTING
-
-state.likes = new Likes();
-window.state = state;
 
 //search controller
 
@@ -77,12 +73,7 @@ const controlRecipe = async () => {
     //get id from url
     
     const id = window.location.hash.replace('#', '');
-    console.log(id);
-
-    //TESTING
-
-    window.r = state.recipe;
-
+ 
 
     
     if (id) {
@@ -117,7 +108,7 @@ const controlRecipe = async () => {
            
         }catch (error){
             console.log(error);
-            alert("Something went wrong with processing the recipe");
+            alert("Something went wrong with processing the recipe. Some recipes unfortunately do not load, this is a known bug. Please try another.");
         }
 
        
@@ -150,7 +141,6 @@ elements.shopping.addEventListener('click', e => {
 
         listView.deleteItem(id);
     } else if (e.target.matches('.shopping__count-value')) {
-        console.log('hello?');
         const val = parseFloat(e.target.value);
         state.list.updateCount(id, val);
     }
@@ -224,5 +214,3 @@ window.addEventListener('load', () => {
     likesView.toggleLikeMenu(state.likes.getNumLikes());
     state.likes.likes.forEach(like => likesView.displayLike(like));
 })
-
-window.l = new List();
